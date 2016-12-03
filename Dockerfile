@@ -1,4 +1,4 @@
-FROM php:7.0-apache
+FROM php:latest
 MAINTAINER hissezhaut - https://github.com/hissezhaut
 RUN a2enmod rewrite
 COPY 010-default.conf /etc/apache2/sites-available
@@ -35,6 +35,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 RUN chown -R www-data:www-data /var/www/html
+
+COPY config_database.php /var/www/html/config/database.php
+
 ONBUILD RUN composer self-update \
         && cd /var/www/html \
         && composer update \
