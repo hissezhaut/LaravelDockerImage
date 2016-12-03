@@ -1,5 +1,5 @@
-FROM php:5.6-apache
-MAINTAINER Chris Stretton - https://github.com/cheezykins
+FROM php:7.0-apache
+MAINTAINER hissezhaut - https://github.com/hissezhaut
 RUN a2enmod rewrite
 COPY 010-default.conf /etc/apache2/sites-available
 WORKDIR /var/www
@@ -30,9 +30,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     --no-interaction \
     --no-progress \
     --prefer-dist \
-    laravel/laravel /var/www/html ~5.2.0 \
-    && rm -f /var/www/html/database/migrations/*.php \
-    /var/www/html/app/Users.php \
+    laravel/laravel /var/www/html ~5.* \
+    && /var/www/html/app/Users.php \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 RUN chown -R www-data:www-data /var/www/html
