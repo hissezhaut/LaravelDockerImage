@@ -1,4 +1,4 @@
-FROM php:latest
+FROM php:7.0-apache
 MAINTAINER hissezhaut - https://github.com/hissezhaut
 RUN a2enmod rewrite
 COPY 010-default.conf /etc/apache2/sites-available
